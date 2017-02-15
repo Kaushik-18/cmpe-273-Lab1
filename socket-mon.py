@@ -1,7 +1,8 @@
+from __future__ import print_function
 import psutil
 import collections
 
-pslist = psutil.net_connections()
+pslist = psutil.net_connections(kind='tcp')
 
 print('pid  ', 'laddr       ', 'raddr        ', 'status            ', sep=',')
 op_list = []
@@ -23,4 +24,4 @@ count = collections.Counter(x[0] for x in op_list)
 final_list = sorted(op_list, key=lambda x: count[x[0]])
 
 for output_obj in final_list:
-    print(output_obj[0], output_obj[1], output_obj[2], output_obj[3], sep=' ,')
+    print(output_obj[0], output_obj[1], output_obj[2], output_obj[3], sep='  ,')
